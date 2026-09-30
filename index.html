@@ -1,0 +1,703 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Honest Vacation Offers: four Vacation Passes. $0 today, about 45-60 minutes on Zoom together. Every fee shown up front.">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Honest Vacation Offers | Vacation Passes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: travel-magazine cover. White pages, saturated destination color fields, big italic serif names, clean sans body. */
+:root{
+  --paper:#ffffff; --wash:#f2f7f8; --fg:#15212b; --muted:#5b6b75; --line:#e2eaed;
+  --coral:#ff5a4e; --sea:#00a3b5; --sun:#ffc23d; --palm:#16875a; --dusk:#6a3fd1;
+  --card:#ffffff;
+  --serif:"Playfair Display",Georgia,"Times New Roman",serif;
+  --sans:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#0e171d;--wash:#14222a;--fg:#f1f6f7;--muted:#a3b4bc;--line:#243640;--card:#121e25;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#0e171d;--wash:#14222a;--fg:#f1f6f7;--muted:#a3b4bc;--line:#243640;--card:#121e25;color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--fg);font-family:var(--sans);font-size:16px;line-height:1.6}
+h1,h2,h3,h4{margin:0;text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--sun);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:16px;padding-block:0}
+.kicker{font:600 11.5px/1.2 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--coral)}
+
+/* destination color fields (photo-ready: set --photo to a url() and it shows under the color wash) */
+.field{position:relative;overflow:hidden;color:#fff;background-color:var(--c1);background-image:var(--photo,none);background-size:cover;background-position:center}
+.field::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(120% 90% at 85% 10%,var(--c3) 0%,transparent 55%),
+  radial-gradient(90% 80% at 10% 100%,var(--c2) 0%,transparent 60%),
+  linear-gradient(160deg,var(--c1),var(--c2));opacity:var(--wash-o,1)}
+.field.has-photo{--wash-o:.35}
+.orl{--c1:#6a3fd1;--c2:#ff5a8a;--c3:#ffb347}
+.myr{--c1:#ff7a59;--c2:#ffc23d;--c3:#ffe8b0}
+.gat{--c1:#0f5e4a;--c2:#3f9a78;--c3:#b9e3cf}
+.cun{--c1:#00a3b5;--c2:#34d1d8;--c3:#e6fbff}
+.aio{--c1:#ff5a4e;--c2:#ff9a5a;--c3:#ffd6a0}
+.exo{--c1:#16875a;--c2:#00a3b5;--c3:#ffe08a}
+.cru{--c1:#1b4fd6;--c2:#00a3b5;--c3:#bfe9ff}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;padding-block:12px}
+.mast{font:900 22px/1 var(--serif);letter-spacing:-.01em;margin-right:auto}
+.mast i{color:var(--coral)}
+.tabs{display:flex;flex-wrap:wrap;gap:6px}
+.tab{font:700 13.5px/1 var(--sans);padding:9px 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--fg);cursor:pointer}
+.tab[aria-selected="true"]{background:var(--fg);color:var(--paper);border-color:var(--fg)}
+.tab[disabled]{opacity:.4;cursor:not-allowed}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:800 15px/1 var(--sans);text-decoration:none;border-radius:999px;padding:15px 22px;border:0;cursor:pointer}
+.btn-coral{background:var(--coral);color:#fff}
+.btn-line{background:transparent;color:var(--fg);box-shadow:inset 0 0 0 2px var(--fg)}
+
+.nm{position:absolute;left:16px;right:16px;bottom:14px;z-index:1}
+.nm small{display:block;font:600 10.5px/1.3 var(--mono);letter-spacing:.16em;text-transform:uppercase;opacity:.9}
+.nm b{display:block;font:900 italic clamp(26px,3.4vw,40px)/1 var(--serif);text-shadow:0 2px 14px rgba(0,0,0,.18)}
+/* ---------- PASS ---------- */
+.pass-bar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding-block:26px 18px}
+.seg{display:inline-flex;padding:4px;border-radius:999px;background:var(--wash)}
+.seg button{font:800 14px/1 var(--sans);padding:10px 20px;border-radius:999px;border:0;background:transparent;color:var(--muted);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--card);color:var(--fg);box-shadow:0 2px 8px rgba(21,33,43,.12)}
+.pass{max-width:860px;margin:0 auto 56px;background:var(--card);border-radius:26px;overflow:hidden;box-shadow:0 30px 70px -30px rgba(21,33,43,.35),0 0 0 1px var(--line)}
+
+.p-mast{display:flex;flex-wrap:wrap;gap:8px 16px;justify-content:space-between;align-items:center;padding:16px 28px;border-bottom:1px solid var(--line)}
+.p-mast .brand{font:900 18px/1 var(--serif)}
+.p-mast .brand i{color:var(--coral)}
+.p-mast .issue{font:600 11px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+
+.p-title{padding:26px 28px 22px;display:grid;gap:14px}
+.p-title .fam{font:600 12px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--coral)}
+.p-title h2{font:900 clamp(40px,7.4vw,76px)/.95 var(--serif);letter-spacing:-.02em}
+.p-title h2 em{font-style:italic;color:var(--sea)}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tags span{font:800 12px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;padding:9px 14px;border-radius:999px;color:#fff}
+.tags span:nth-child(1){background:var(--coral)}
+.tags span:nth-child(2){background:var(--sea)}
+.tags span:nth-child(3){background:var(--palm)}
+
+.top4{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;padding:0 4px}
+.top4 .field{aspect-ratio:16/11;max-width:100%;border-radius:4px}
+.top4 .field:first-child{border-top-left-radius:20px}
+.top4 .field:nth-child(2){border-top-right-radius:20px}
+/* drawing: gradient 100% &#8594; 60% &#8594; 20% */
+.top4 .field::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,.06) 45%,rgba(0,0,0,.2) 70%,rgba(0,0,0,.34) 100%)}
+.top4 .nm{z-index:2}
+.top4 .nm b{font-size:clamp(30px,5.4vw,50px)}
+.top4 .blurb{display:block;font:600 14px/1.35 var(--sans);margin-top:6px;max-width:30ch;opacity:.96}
+.top4 .rank{position:absolute;top:14px;left:16px;z-index:2;font:600 10.5px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;background:rgba(255,255,255,.22);padding:6px 9px;border-radius:999px;backdrop-filter:blur(4px)}
+
+.zero{display:grid;grid-template-columns:auto minmax(0,1fr);gap:24px;align-items:center;margin:28px;padding:26px 28px;border-radius:20px;background:var(--wash)}
+.zero .big{font:900 clamp(78px,13vw,128px)/.8 var(--serif);color:var(--coral);letter-spacing:-.03em}
+.zero .big small{display:block;font:700 12px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:12px;text-align:center}
+.zero h3{font:900 clamp(26px,3.6vw,34px)/1.05 var(--serif);margin-bottom:8px}
+.zero p{color:var(--muted);max-width:58ch}
+
+.others{padding:4px 28px 26px}
+.others .hd{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;margin-bottom:14px}
+.others h3{font:900 30px/1 var(--serif)}
+.others .hd span{font:600 12px/1.3 var(--mono);color:var(--muted);letter-spacing:.06em}
+.dest{columns:3 200px;column-gap:24px}
+.dest .st{break-inside:avoid;padding-block:7px;border-top:1px solid var(--line)}
+.dest .st i{display:block;font:600 10.5px/1.2 var(--mono);font-style:normal;letter-spacing:.16em;text-transform:uppercase;color:var(--sea)}
+.dest .st span{font:700 16px/1.4 var(--sans)}
+
+.qual{margin:0 28px 28px;border-radius:20px;padding:26px 28px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:end;background:var(--sea);color:#fff}
+.qual h3{font:900 clamp(26px,3.6vw,34px)/1.05 var(--serif)}
+.qual .must{display:inline-block;margin:10px 0 14px;font:700 11px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;background:#fff;color:#0b5f69;padding:7px 10px;border-radius:999px}
+.qual ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.qual li{display:grid;grid-template-columns:24px minmax(0,1fr);gap:10px;align-items:start;font-weight:700;font-size:16.5px}
+.qual li::before{content:"\2713";display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:#fff;color:#0b5f69;font-size:13px;font-weight:800}
+.qual .wq{font:900 italic clamp(34px,5vw,48px)/1 var(--serif);color:var(--sun);text-align:right}
+
+.p-foot{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:22px;align-items:center;padding:22px 28px;border-top:1px solid var(--line)}
+.qr{width:112px;height:112px;background:#fff;border-radius:14px;padding:8px;box-shadow:0 0 0 1px var(--line)}
+.qr svg{display:block;width:100%;height:100%}
+.scan b{display:block;font:900 22px/1.1 var(--serif)}
+.scan span{font:600 12px/1.4 var(--mono);color:var(--muted);overflow-wrap:anywhere}
+.call{text-align:right}
+.call .k{font:700 11px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--coral)}
+.call .n{font:900 clamp(30px,5vw,42px)/1.05 var(--serif);margin-top:4px}
+.call .s{font-size:14px;color:var(--muted);font-weight:600}
+
+/* back */
+.back{padding:6px 28px 12px}
+.back > section{padding-block:26px;border-top:1px solid var(--line)}
+.back > section:first-child{border-top:0}
+.back h3{font:900 clamp(28px,4vw,38px)/1 var(--serif);margin-bottom:16px}
+.back h3 em{color:var(--coral)}
+.expect{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.expect div{background:var(--wash);border-radius:16px;padding:16px 18px;display:grid;gap:4px;align-content:start}
+.expect .k{font:600 10.5px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--sea)}
+.expect .v{font:900 22px/1.1 var(--serif)}
+.expect p{font-size:14.5px;color:var(--muted)}
+.vs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.vs div{border-radius:16px;padding:18px 20px}
+.vs b{display:block;font:900 20px/1.1 var(--serif);margin-bottom:8px}
+.vs .them{box-shadow:inset 0 0 0 1.5px var(--line);color:var(--muted)}
+.vs .us{background:var(--coral);color:#fff}
+.more{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:12px}
+.more p{background:var(--wash);border-radius:16px;padding:16px 18px;font-size:15.5px}
+.more b{display:block;font:900 19px/1.15 var(--serif);margin-bottom:4px}
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;counter-reset:s}
+.steps li{counter-increment:s;border-radius:16px;padding:16px 18px;background:var(--wash);font-weight:700;font-size:16px}
+.steps li::before{content:counter(s);display:block;font:900 italic 44px/1 var(--serif);color:var(--coral);margin-bottom:6px}
+.otd{display:flex;flex-wrap:wrap;gap:10px 28px;align-items:baseline;margin-top:18px}
+.otd .p{font:900 clamp(34px,5vw,46px)/1 var(--serif);color:var(--sea)}
+.otd .p small{font:700 14px/1 var(--sans);color:var(--muted);margin-left:6px}
+.otd .fine{flex-basis:100%}
+.fine{font:500 12px/1.55 var(--mono);color:var(--muted)}
+.cmpwrap{overflow-x:auto;border-radius:16px;box-shadow:inset 0 0 0 1px var(--line)}
+table{border-collapse:collapse;width:100%;min-width:660px;font-size:14.5px}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{font:600 10.5px/1.35 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+tbody th{font-weight:800}
+.us-col{background:color-mix(in srgb,var(--sun) 28%,var(--card));font-weight:800}
+thead .us-col{color:var(--fg)}
+tr:last-child td,tr:last-child th{border-bottom:0}
+.cmp-note{margin-top:10px}
+.terms{columns:2 280px;column-gap:28px;margin:0;padding-left:18px;font-size:14px;color:var(--muted)}
+.terms li{break-inside:avoid;margin-bottom:8px}
+
+@media (max-width:820px){
+  .cover-grid,.story,.contact{grid-template-columns:minmax(0,1fr)}
+  .quote{position:static}
+  .passes{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .expect,.steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:560px){
+  .diff4,.vs,.more,.expect,.steps,.passes{grid-template-columns:minmax(0,1fr)}
+  .top4{grid-template-columns:minmax(0,1fr)}
+  .top4 .field{border-radius:4px!important}
+  .top4 .field:first-child{border-radius:20px 20px 4px 4px!important}
+  .zero{grid-template-columns:minmax(0,1fr);margin:16px;padding:22px}
+  .zero .big small{text-align:left}
+  .qual{grid-template-columns:minmax(0,1fr);margin:0 16px 16px}
+  .qual .wq{text-align:left}
+  .p-title,.others,.back{padding-inline:16px}
+  .p-mast{padding-inline:16px}
+  .p-foot{grid-template-columns:auto minmax(0,1fr);padding-inline:16px}
+  .call{grid-column:1/-1;text-align:left}
+  .mosaic .field:nth-child(2),.mosaic .field:nth-child(4){transform:none}
+}
+@media (prefers-reduced-motion:no-preference){
+  .pass,.cover-grid{animation:up .6s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes up{from{transform:translateY(10px)}to{transform:none}}
+}
+
+.dr{--c1:#0077b6;--c2:#48cae4;--c3:#fff1b8}
+.mob{--c1:#1a7f4b;--c2:#ffc23d;--c3:#fff6c7}
+.cab{--c1:#c8553d;--c2:#f28f3b;--c3:#9ad1d4}
+.cr{--c1:#1b5e20;--c2:#43a047;--c3:#c5e1a5}
+.hon{--c1:#0288d1;--c2:#26c6da;--c3:#ffe082}
+.sj{--c1:#d81b60;--c2:#ffb300;--c3:#80deea}
+.bah{--c1:#00acc1;--c2:#4dd0e1;--c3:#ffffff}
+.mex{--c1:#e65100;--c2:#ff8a65;--c3:#ffe0b2}
+.wc{--c1:#1b4fd6;--c2:#26a69a;--c3:#b2ebf2}
+.line4{margin-top:10px;font-size:14.5px;color:var(--fg)!important}
+.flip-link{all:unset;cursor:pointer;color:var(--coral);font-weight:800}
+.flip-link:focus-visible{outline:3px solid var(--sun)}
+.top4.odd .field:first-child{grid-column:1/-1;aspect-ratio:21/9;border-radius:20px 20px 4px 4px}
+.top4.odd .field:nth-child(2){border-top-right-radius:4px}
+.incl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.incl div{background:var(--wash);border-radius:14px;padding:14px 16px;font-weight:700}
+.incl div small{display:block;font:600 10.5px/1.2 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--sea);margin-bottom:4px}
+@media (max-width:560px){.incl{grid-template-columns:minmax(0,1fr)}.line4{margin-top:10px;font-size:14.5px;color:var(--fg)!important}
+.flip-link{all:unset;cursor:pointer;color:var(--coral);font-weight:800}
+.flip-link:focus-visible{outline:3px solid var(--sun)}
+.top4.odd .field:first-child{aspect-ratio:16/11}}
+:root{--photo-orl:url("https://thumb.wikimedia.org/wikipedia/commons/thumb/2/21/Lake_Eola_Lake%2C_Orlando_Florida.jpg/1280px-Lake_Eola_Lake%2C_Orlando_Florida.jpg");--photo-myr:url("https://thumb.wikimedia.org/wikipedia/commons/thumb/3/37/Myrtle_Beach_ferris_wheel.jpg/1280px-Myrtle_Beach_ferris_wheel.jpg");--photo-gat:url("https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e8/Fall_at_Oconaluftee_Overlook.JPG/1280px-Fall_at_Oconaluftee_Overlook.JPG");--photo-cun:url("https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ca/Boulevard_Kukulcan%2C_Zona_Hotelera%2C_Canc%C3%BAn%2C_Mexico_-_panoramio_%2823%29.jpg/1280px-Boulevard_Kukulcan%2C_Zona_Hotelera%2C_Canc%C3%BAn%2C_Mexico_-_panoramio_%2823%29.jpg");--photo-dr:url("https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ee/Punta_Cana_Beach_02.jpg/1280px-Punta_Cana_Beach_02.jpg");--photo-mob:url("https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6f/Montego_Bay_East_Photo_Don_Ramey_Logan.jpg/1280px-Montego_Bay_East_Photo_Don_Ramey_Logan.jpg");--photo-hon:url("https://thumb.wikimedia.org/wikipedia/commons/thumb/2/28/Waikiki_Beach_%282024%29-L1004709.jpg/1280px-Waikiki_Beach_%282024%29-L1004709.jpg");--photo-cab:url("https://thumb.wikimedia.org/wikipedia/commons/thumb/9/97/El_Arco%2C_Cabo_San_Lucas%2C_M%C3%A9xico%2C_2024-12-22%2C_DD_03.jpg/1280px-El_Arco%2C_Cabo_San_Lucas%2C_M%C3%A9xico%2C_2024-12-22%2C_DD_03.jpg");--photo-cr:url("https://thumb.wikimedia.org/wikipedia/commons/thumb/0/01/Manuel-antonio-quepos-costa-rica-second-beach.JPG/1280px-Manuel-antonio-quepos-costa-rica-second-beach.JPG");--photo-sj:url("https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a3/Puerto_Rico_%E2%80%94_San_Juan_%E2%80%94_unknown_turquoise_residential_building_with_flag.JPG/1280px-Puerto_Rico_%E2%80%94_San_Juan_%E2%80%94_unknown_turquoise_residential_building_with_flag.JPG");--photo-bah:url("https://thumb.wikimedia.org/wikipedia/commons/thumb/6/64/Bahamas_1989_%28542%29_Exuma_%2825258969665%29.jpg/1280px-Bahamas_1989_%28542%29_Exuma_%2825258969665%29.jpg");--photo-mex:url("https://thumb.wikimedia.org/wikipedia/commons/thumb/2/27/Beach_Chairs_In_Cozumel_Mexico_%28125160641%29.jpeg/1280px-Beach_Chairs_In_Cozumel_Mexico_%28125160641%29.jpeg");--photo-wc:url("https://thumb.wikimedia.org/wikipedia/commons/thumb/1/19/Seven_Mile_Beach_Facing_South.jpg/1280px-Seven_Mile_Beach_Facing_South.jpg");}
+.orl{--photo:var(--photo-orl)}
+.myr{--photo:var(--photo-myr)}
+.gat{--photo:var(--photo-gat)}
+.cun{--photo:var(--photo-cun)}
+.dr{--photo:var(--photo-dr)}
+.mob{--photo:var(--photo-mob)}
+.hon{--photo:var(--photo-hon)}
+.cab{--photo:var(--photo-cab)}
+.cr{--photo:var(--photo-cr)}
+.sj{--photo:var(--photo-sj)}
+.bah{--photo:var(--photo-bah)}
+.mex{--photo:var(--photo-mex)}
+.wc{--photo:var(--photo-wc)}
+.aio{--photo:var(--photo-dr)}
+.exo{--photo:var(--photo-cab)}
+.cru{--photo:var(--photo-bah)}
+.field.has-photo{background-color:#15212b}
+.field.has-photo::before{background:linear-gradient(180deg,rgba(10,20,28,.10) 0%,rgba(10,20,28,.05) 40%,rgba(10,20,28,.62) 100%);opacity:1}
+.quote.field.has-photo::before{background:linear-gradient(160deg,rgba(10,20,28,.35),rgba(10,20,28,.7))}
+.top4 .field.has-photo::after{background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,.06) 45%,rgba(0,0,0,.25) 70%,rgba(0,0,0,.5) 100%)}
+.nm b,.nm small,.blurb{text-shadow:0 2px 12px rgba(0,0,0,.45)}
+.credits{padding-block:0 48px;font:500 11.5px/1.6 var(--mono);color:var(--muted)}
+.credits summary{cursor:pointer;font-weight:600}
+.credits a{color:inherit}
+</style>
+
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><path id="qrp" fill="#15212b" d="M1,1H2V2H1zM2,1H3V2H2zM3,1H4V2H3zM4,1H5V2H4zM5,1H6V2H5zM6,1H7V2H6zM7,1H8V2H7zM11,1H12V2H11zM12,1H13V2H12zM13,1H14V2H13zM17,1H18V2H17zM19,1H20V2H19zM20,1H21V2H20zM21,1H22V2H21zM23,1H24V2H23zM24,1H25V2H24zM27,1H28V2H27zM28,1H29V2H28zM29,1H30V2H29zM30,1H31V2H30zM31,1H32V2H31zM32,1H33V2H32zM33,1H34V2H33zM1,2H2V3H1zM7,2H8V3H7zM16,2H17V3H16zM17,2H18V3H17zM19,2H20V3H19zM21,2H22V3H21zM22,2H23V3H22zM23,2H24V3H23zM27,2H28V3H27zM33,2H34V3H33zM1,3H2V4H1zM3,3H4V4H3zM4,3H5V4H4zM5,3H6V4H5zM7,3H8V4H7zM9,3H10V4H9zM11,3H12V4H11zM12,3H13V4H12zM15,3H16V4H15zM16,3H17V4H16zM20,3H21V4H20zM21,3H22V4H21zM22,3H23V4H22zM24,3H25V4H24zM25,3H26V4H25zM27,3H28V4H27zM29,3H30V4H29zM30,3H31V4H30zM31,3H32V4H31zM33,3H34V4H33zM1,4H2V5H1zM3,4H4V5H3zM4,4H5V5H4zM5,4H6V5H5zM7,4H8V5H7zM9,4H10V5H9zM10,4H11V5H10zM11,4H12V5H11zM19,4H20V5H19zM20,4H21V5H20zM22,4H23V5H22zM25,4H26V5H25zM27,4H28V5H27zM29,4H30V5H29zM30,4H31V5H30zM31,4H32V5H31zM33,4H34V5H33zM1,5H2V6H1zM3,5H4V6H3zM4,5H5V6H4zM5,5H6V6H5zM7,5H8V6H7zM9,5H10V6H9zM10,5H11V6H10zM14,5H15V6H14zM15,5H16V6H15zM16,5H17V6H16zM17,5H18V6H17zM18,5H19V6H18zM21,5H22V6H21zM22,5H23V6H22zM24,5H25V6H24zM27,5H28V6H27zM29,5H30V6H29zM30,5H31V6H30zM31,5H32V6H31zM33,5H34V6H33zM1,6H2V7H1zM7,6H8V7H7zM9,6H10V7H9zM10,6H11V7H10zM11,6H12V7H11zM12,6H13V7H12zM14,6H15V7H14zM15,6H16V7H15zM18,6H19V7H18zM20,6H21V7H20zM22,6H23V7H22zM23,6H24V7H23zM27,6H28V7H27zM33,6H34V7H33zM1,7H2V8H1zM2,7H3V8H2zM3,7H4V8H3zM4,7H5V8H4zM5,7H6V8H5zM6,7H7V8H6zM7,7H8V8H7zM9,7H10V8H9zM11,7H12V8H11zM13,7H14V8H13zM15,7H16V8H15zM17,7H18V8H17zM19,7H20V8H19zM21,7H22V8H21zM23,7H24V8H23zM25,7H26V8H25zM27,7H28V8H27zM28,7H29V8H28zM29,7H30V8H29zM30,7H31V8H30zM31,7H32V8H31zM32,7H33V8H32zM33,7H34V8H33zM9,8H10V9H9zM11,8H12V9H11zM12,8H13V9H12zM13,8H14V9H13zM17,8H18V9H17zM19,8H20V9H19zM20,8H21V9H20zM21,8H22V9H21zM22,8H23V9H22zM1,9H2V10H1zM3,9H4V10H3zM4,9H5V10H4zM5,9H6V10H5zM6,9H7V10H6zM7,9H8V10H7zM11,9H12V10H11zM12,9H13V10H12zM14,9H15V10H14zM15,9H16V10H15zM18,9H19V10H18zM20,9H21V10H20zM23,9H24V10H23zM24,9H25V10H24zM27,9H28V10H27zM28,9H29V10H28zM29,9H30V10H29zM30,9H31V10H30zM31,9H32V10H31zM1,10H2V11H1zM3,10H4V11H3zM4,10H5V11H4zM6,10H7V11H6zM8,10H9V11H8zM11,10H12V11H11zM12,10H13V11H12zM14,10H15V11H14zM17,10H18V11H17zM18,10H19V11H18zM19,10H20V11H19zM20,10H21V11H20zM21,10H22V11H21zM23,10H24V11H23zM24,10H25V11H24zM27,10H28V11H27zM28,10H29V11H28zM30,10H31V11H30zM31,10H32V11H31zM33,10H34V11H33zM1,11H2V12H1zM2,11H3V12H2zM7,11H8V12H7zM8,11H9V12H8zM10,11H11V12H10zM11,11H12V12H11zM14,11H15V12H14zM15,11H16V12H15zM16,11H17V12H16zM18,11H19V12H18zM21,11H22V12H21zM23,11H24V12H23zM26,11H27V12H26zM27,11H28V12H27zM29,11H30V12H29zM31,11H32V12H31zM32,11H33V12H32zM1,12H2V13H1zM2,12H3V13H2zM3,12H4V13H3zM8,12H9V13H8zM9,12H10V13H9zM10,12H11V13H10zM11,12H12V13H11zM12,12H13V13H12zM13,12H14V13H13zM14,12H15V13H14zM16,12H17V13H16zM17,12H18V13H17zM18,12H19V13H18zM19,12H20V13H19zM29,12H30V13H29zM30,12H31V13H30zM31,12H32V13H31zM32,12H33V13H32zM33,12H34V13H33zM2,13H3V14H2zM3,13H4V14H3zM6,13H7V14H6zM7,13H8V14H7zM8,13H9V14H8zM10,13H11V14H10zM13,13H14V14H13zM15,13H16V14H15zM16,13H17V14H16zM17,13H18V14H17zM20,13H21V14H20zM21,13H22V14H21zM22,13H23V14H22zM23,13H24V14H23zM25,13H26V14H25zM26,13H27V14H26zM28,13H29V14H28zM29,13H30V14H29zM30,13H31V14H30zM3,14H4V15H3zM10,14H11V15H10zM11,14H12V15H11zM13,14H14V15H13zM14,14H15V15H14zM16,14H17V15H16zM18,14H19V15H18zM19,14H20V15H19zM22,14H23V15H22zM24,14H25V15H24zM27,14H28V15H27zM30,14H31V15H30zM32,14H33V15H32zM33,14H34V15H33zM6,15H7V16H6zM7,15H8V16H7zM8,15H9V16H8zM10,15H11V16H10zM14,15H15V16H14zM15,15H16V16H15zM16,15H17V16H16zM17,15H18V16H17zM21,15H22V16H21zM23,15H24V16H23zM25,15H26V16H25zM26,15H27V16H26zM27,15H28V16H27zM29,15H30V16H29zM30,15H31V16H30zM32,15H33V16H32zM1,16H2V17H1zM4,16H5V17H4zM9,16H10V17H9zM12,16H13V17H12zM15,16H16V17H15zM16,16H17V17H16zM22,16H23V17H22zM26,16H27V17H26zM27,16H28V17H27zM29,16H30V17H29zM30,16H31V17H30zM31,16H32V17H31zM1,17H2V18H1zM2,17H3V18H2zM3,17H4V18H3zM4,17H5V18H4zM6,17H7V18H6zM7,17H8V18H7zM8,17H9V18H8zM9,17H10V18H9zM10,17H11V18H10zM13,17H14V18H13zM15,17H16V18H15zM16,17H17V18H16zM17,17H18V18H17zM18,17H19V18H18zM23,17H24V18H23zM25,17H26V18H25zM26,17H27V18H26zM28,17H29V18H28zM29,17H30V18H29zM33,17H34V18H33zM4,18H5V19H4zM9,18H10V19H9zM11,18H12V19H11zM12,18H13V19H12zM13,18H14V19H13zM15,18H16V19H15zM17,18H18V19H17zM19,18H20V19H19zM20,18H21V19H20zM21,18H22V19H21zM22,18H23V19H22zM24,18H25V19H24zM27,18H28V19H27zM28,18H29V19H28zM30,18H31V19H30zM31,18H32V19H31zM33,18H34V19H33zM2,19H3V20H2zM4,19H5V20H4zM7,19H8V20H7zM8,19H9V20H8zM9,19H10V20H9zM10,19H11V20H10zM13,19H14V20H13zM16,19H17V20H16zM17,19H18V20H17zM19,19H20V20H19zM22,19H23V20H22zM25,19H26V20H25zM26,19H27V20H26zM27,19H28V20H27zM28,19H29V20H28zM29,19H30V20H29zM31,19H32V20H31zM32,19H33V20H32zM3,20H4V21H3zM4,20H5V21H4zM5,20H6V21H5zM9,20H10V21H9zM15,20H16V21H15zM16,20H17V21H16zM17,20H18V21H17zM21,20H22V21H21zM22,20H23V21H22zM23,20H24V21H23zM24,20H25V21H24zM28,20H29V21H28zM29,20H30V21H29zM30,20H31V21H30zM31,20H32V21H31zM33,20H34V21H33zM1,21H2V22H1zM3,21H4V22H3zM4,21H5V22H4zM5,21H6V22H5zM7,21H8V22H7zM8,21H9V22H8zM11,21H12V22H11zM16,21H17V22H16zM19,21H20V22H19zM22,21H23V22H22zM24,21H25V22H24zM28,21H29V22H28zM29,21H30V22H29zM30,21H31V22H30zM32,21H33V22H32zM33,21H34V22H33zM1,22H2V23H1zM8,22H9V23H8zM9,22H10V23H9zM13,22H14V23H13zM15,22H16V23H15zM16,22H17V23H16zM17,22H18V23H17zM21,22H22V23H21zM22,22H23V23H22zM23,22H24V23H23zM24,22H25V23H24zM27,22H28V23H27zM30,22H31V23H30zM33,22H34V23H33zM1,23H2V24H1zM3,23H4V24H3zM5,23H6V24H5zM6,23H7V24H6zM7,23H8V24H7zM9,23H10V24H9zM11,23H12V24H11zM14,23H15V24H14zM15,23H16V24H15zM19,23H20V24H19zM20,23H21V24H20zM22,23H23V24H22zM25,23H26V24H25zM27,23H28V24H27zM28,23H29V24H28zM30,23H31V24H30zM31,23H32V24H31zM32,23H33V24H32zM1,24H2V25H1zM4,24H5V25H4zM6,24H7V25H6zM9,24H10V25H9zM11,24H12V25H11zM12,24H13V25H12zM13,24H14V25H13zM14,24H15V25H14zM15,24H16V25H15zM17,24H18V25H17zM20,24H21V25H20zM21,24H22V25H21zM22,24H23V25H22zM23,24H24V25H23zM25,24H26V25H25zM28,24H29V25H28zM31,24H32V25H31zM32,24H33V25H32zM1,25H2V26H1zM3,25H4V26H3zM4,25H5V26H4zM5,25H6V26H5zM7,25H8V26H7zM12,25H13V26H12zM18,25H19V26H18zM20,25H21V26H20zM21,25H22V26H21zM23,25H24V26H23zM24,25H25V26H24zM25,25H26V26H25zM26,25H27V26H26zM27,25H28V26H27zM28,25H29V26H28zM29,25H30V26H29zM32,25H33V26H32zM33,25H34V26H33zM9,26H10V27H9zM11,26H12V27H11zM12,26H13V27H12zM15,26H16V27H15zM17,26H18V27H17zM18,26H19V27H18zM20,26H21V27H20zM21,26H22V27H21zM25,26H26V27H25zM29,26H30V27H29zM31,26H32V27H31zM33,26H34V27H33zM1,27H2V28H1zM2,27H3V28H2zM3,27H4V28H3zM4,27H5V28H4zM5,27H6V28H5zM6,27H7V28H6zM7,27H8V28H7zM11,27H12V28H11zM13,27H14V28H13zM16,27H17V28H16zM17,27H18V28H17zM18,27H19V28H18zM21,27H22V28H21zM23,27H24V28H23zM24,27H25V28H24zM25,27H26V28H25zM27,27H28V28H27zM29,27H30V28H29zM31,27H32V28H31zM1,28H2V29H1zM7,28H8V29H7zM9,28H10V29H9zM11,28H12V29H11zM12,28H13V29H12zM18,28H19V29H18zM19,28H20V29H19zM24,28H25V29H24zM25,28H26V29H25zM29,28H30V29H29zM30,28H31V29H30zM31,28H32V29H31zM32,28H33V29H32zM33,28H34V29H33zM1,29H2V30H1zM3,29H4V30H3zM4,29H5V30H4zM5,29H6V30H5zM7,29H8V30H7zM9,29H10V30H9zM13,29H14V30H13zM14,29H15V30H14zM15,29H16V30H15zM17,29H18V30H17zM21,29H22V30H21zM22,29H23V30H22zM23,29H24V30H23zM25,29H26V30H25zM26,29H27V30H26zM27,29H28V30H27zM28,29H29V30H28zM29,29H30V30H29zM30,29H31V30H30zM32,29H33V30H32zM1,30H2V31H1zM3,30H4V31H3zM4,30H5V31H4zM5,30H6V31H5zM7,30H8V31H7zM9,30H10V31H9zM10,30H11V31H10zM11,30H12V31H11zM12,30H13V31H12zM16,30H17V31H16zM19,30H20V31H19zM22,30H23V31H22zM24,30H25V31H24zM26,30H27V31H26zM29,30H30V31H29zM30,30H31V31H30zM33,30H34V31H33zM1,31H2V32H1zM3,31H4V32H3zM4,31H5V32H4zM5,31H6V32H5zM7,31H8V32H7zM9,31H10V32H9zM10,31H11V32H10zM12,31H13V32H12zM13,31H14V32H13zM14,31H15V32H14zM16,31H17V32H16zM17,31H18V32H17zM18,31H19V32H18zM19,31H20V32H19zM21,31H22V32H21zM24,31H25V32H24zM27,31H28V32H27zM28,31H29V32H28zM30,31H31V32H30zM1,32H2V33H1zM7,32H8V33H7zM11,32H12V33H11zM13,32H14V33H13zM14,32H15V33H14zM15,32H16V33H15zM16,32H17V33H16zM19,32H20V33H19zM22,32H23V33H22zM23,32H24V33H23zM26,32H27V33H26zM27,32H28V33H27zM29,32H30V33H29zM30,32H31V33H30zM31,32H32V33H31zM1,33H2V34H1zM2,33H3V34H2zM3,33H4V34H3zM4,33H5V34H4zM5,33H6V34H5zM6,33H7V34H6zM7,33H8V34H7zM9,33H10V34H9zM11,33H12V34H11zM16,33H17V34H16zM18,33H19V34H18zM23,33H24V34H23zM24,33H25V34H24zM25,33H26V34H25zM27,33H28V34H27zM28,33H29V34H28zM30,33H31V34H30zM32,33H33V34H32z" id="qr-path" fill="#000000" fill-opacity="1" fill-rule="nonzero" stroke="none"/></defs></svg>
+<header class="nav">
+  <div class="wrap">
+    <div class="mast">Honest <i>Vacation</i> Offers</div>
+    <nav class="tabs" role="tablist" aria-label="Pages">
+      <button class="tab" role="tab" data-go="condo" aria-selected="true">Resort Condo Pass</button>
+      <button class="tab" role="tab" data-go="allinc" aria-selected="false">All-Inclusive Pass</button>
+      <button class="tab" role="tab" data-go="exotic" aria-selected="false">Exotic + Airfare Pass</button>
+      <button class="tab" role="tab" data-go="cruise" aria-selected="false">Cruise Pass</button>
+    </nav>
+  </div>
+</header>
+
+<main id="condo">
+  <div class="wrap">
+    <div class="pass-bar">
+      <div class="kicker">Vacation Pass 1 of 4</div>
+      <div class="seg" role="group" aria-label="Pass side">
+        <button aria-pressed="true" data-side="front" data-pass="condo">Front</button>
+        <button aria-pressed="false" data-side="back" data-pass="condo">Back</button>
+      </div>
+    </div>
+    <article class="pass side-front" aria-label="7-Night Resort Condo Pass, front">
+      <div class="p-mast"><span class="brand">Honest <i>Vacation</i> Offers</span><span class="issue">Vacation Pass &#183; Resort Condo</span></div>
+      <div class="p-title">
+        <span class="fam">7-Night Resort Condo Pass &#183; The Honest Getaway</span>
+        <h2>7 nights of condo time for <em>up to four</em> people</h2>
+        <div class="tags"><span>Exotic</span><span>Abroad</span><span>Statewide</span></div>
+      </div>
+      <div class="top4"><div class="field orl has-photo"><span class="rank">Top location</span><div class="nm"><small>Florida</small><b>Orlando</b><span class="blurb">The theme park capital of the world, with room for the whole crew.</span></div></div><div class="field myr has-photo"><span class="rank">Top location</span><div class="nm"><small>South Carolina</small><b>Myrtle Beach</b><span class="blurb">60 miles of Grand Strand beaches, boardwalk nights and golf.</span></div></div><div class="field gat has-photo"><span class="rank">Top location</span><div class="nm"><small>Tennessee</small><b>Gatlinburg</b><span class="blurb">Gateway to Great Smoky Mountains National Park.</span></div></div><div class="field cun has-photo"><span class="rank">Top location</span><div class="nm"><small>Mexico</small><b>Cancun</b><span class="blurb">Turquoise Caribbean water and white-sand beaches.</span></div></div></div>
+      <div class="zero">
+        <div class="big">$0<small>today</small></div>
+        <div>
+          <h3>Just 45&#8211;60 minutes of your time</h3>
+          <p>We'll show you the benefits of travel and how to activate your Vacation Pass. You're never required to buy anything. If it's not for you, you're on your way in about an hour, off to enjoy an amazing vacation. We hope to earn your business again once you're back.</p>
+          <p class="line4"><b>When you book travel:</b> a $150 refundable deposit + taxes/fees from $15 per night per traveler. <button class="flip-link" data-side="back" data-pass="condo">See every term &#8594;</button></p>
+        </div>
+      </div>
+      <div class="others">
+        <div class="hd"><h3>Other top locations</h3><span>66 more across the U.S., Canada, Caribbean &amp; Mexico</span></div>
+        <div class="dest"><div class="st"><i>Alabama</i><span>Mobile</span></div><div class="st"><i>Arizona</i><span>Scottsdale &#183; Sedona</span></div><div class="st"><i>Arkansas</i><span>Fairfield Bay &#183; Hot Springs</span></div><div class="st"><i>California</i><span>Helendale &#183; S. Tahoe Lake &#183; Tahoe Vista</span></div><div class="st"><i>Colorado</i><span>Pagosa Springs &#183; Silvercreek &#183; Breckenridge</span></div><div class="st"><i>Florida</i><span>Daytona Beach &#183; Kissimmee &#183; Pompano Beach &#183; Westin</span></div><div class="st"><i>Georgia</i><span>Helen</span></div><div class="st"><i>Hawaii</i><span>Hawaiian Island Options</span></div><div class="st"><i>Idaho</i><span>Hope</span></div><div class="st"><i>Illinois</i><span>Sheridan</span></div><div class="st"><i>Indiana</i><span>French Lick</span></div><div class="st"><i>Iowa</i><span>Arnolds Park</span></div><div class="st"><i>Maine</i><span>Bethel</span></div><div class="st"><i>Maryland</i><span>Ocean City</span></div><div class="st"><i>Massachusetts</i><span>Yarmouth &#183; Provincetown</span></div><div class="st"><i>Minnesota</i><span>Breezy Point &#183; Detroit Lakes</span></div><div class="st"><i>Missouri</i><span>Branson &#183; Lake Ozark</span></div><div class="st"><i>Montana</i><span>Whitefish</span></div><div class="st"><i>Nevada</i><span>Mesquite &#183; Stateline</span></div><div class="st"><i>New Hampshire</i><span>North Conway</span></div><div class="st"><i>New Jersey</i><span>Atlantic City &#183; Brigantine</span></div><div class="st"><i>New Mexico</i><span>Ruidoso</span></div><div class="st"><i>New York</i><span>Catskill</span></div><div class="st"><i>North Carolina</i><span>Atlantic Beach &#183; Banner Elk &#183; Cashiers &#183; Kitty Hawk &#183; Lake Lure &#183; New Bern &#183; Sapphire Valley</span></div><div class="st"><i>Pennsylvania</i><span>Shawanee on the Delaware</span></div><div class="st"><i>South Carolina</i><span>Garden City</span></div><div class="st"><i>Tennessee</i><span>Crossville &#183; Pigeon Forge &#183; Sevierville</span></div><div class="st"><i>Texas</i><span>Conroe &#183; Flint &#183; Montgomery</span></div><div class="st"><i>Utah</i><span>Park City</span></div><div class="st"><i>Vermont</i><span>Wilmington</span></div><div class="st"><i>Virginia</i><span>Virginia Beach &#183; Williamsburg</span></div><div class="st"><i>Wisconsin</i><span>Wisconsin Dells</span></div><div class="st"><i>Canada</i><span>Ontario</span></div><div class="st"><i>Bahamas</i><span>Freeport &#183; Grand Bahama</span></div><div class="st"><i>Caribbean</i><span>Aruba &#183; St. Maarten</span></div><div class="st"><i>Dominican Republic</i><span>Puerto Plata &#183; Santo Domingo</span></div><div class="st"><i>Mexico</i><span>Acapulco &#183; Mazatl&#225;n</span></div></div>
+      </div>
+      <div class="qual">
+        <div>
+          <h3>Limited pre-qualified offer</h3>
+          <span class="must">Must qualify</span>
+          <ul>
+            <li>You travel more than 2 times a year</li>
+            <li>Married or life partner attends with you</li>
+            <li>Combined income of $75K+ and a major credit card</li>
+            <li>Both partners between 35 and 72</li>
+          </ul>
+        </div>
+        <div class="wq">We qualify!</div>
+      </div>
+      <div class="p-foot">
+        <div class="qr" role="img" aria-label="QR code to honestvacationmarketing.com/poll.html"><svg viewBox="0 0 35 35"><use href="#qrp"/></svg></div>
+        <div class="scan"><b>Scan to find my vacation</b><span>honestvacationmarketing.com/poll.html</span></div>
+        <div class="call"><div class="k">Call now</div><div class="n">(855) 418-6714</div><div class="s">Speak to a live agent</div></div>
+      </div>
+    </article>
+    <article class="pass side-back" hidden aria-label="7-Night Resort Condo Pass, back">
+      <div class="p-mast"><span class="brand">Honest <i>Vacation</i> Offers</span><span class="issue">Vacation Pass &#183; Resort Condo &#183; Back</span></div>
+      <div class="back">
+        <section>
+          <h3>What to <em>expect</em></h3>
+          <div class="expect">
+            <div><span class="k">Length</span><span class="v">45 min, 60 max</span><p>One hour tops, even if you're not interested.</p></div>
+            <div><span class="k">Where</span><span class="v">On Zoom</span><p>No sales center and no time taken from your vacation.</p></div>
+            <div><span class="k">Times</span><span class="v">Mon&#8211;Sat</span><p>1:30, 3:30 or 5:30 Monday&#8211;Friday. 1:30 or 3:30 Saturday.</p></div>
+            <div><span class="k">Who attends</span><span class="v">Both of you</span><p>Both spouses, or you and your traveling partner, together.</p></div>
+            <div><span class="k">Activation</span><span class="v">About 45 min in</span><p>Your Vacation Pass is activated during the presentation.</p></div>
+            <div><span class="k">Buying</span><span class="v">Nothing, ever</span><p>You are not required to buy anything.</p></div>
+          </div>
+        </section>
+        <section>
+          <h3>Why we're <em>different</em></h3>
+          <div class="vs">
+            <div class="them"><b>The big players</b>Charge you upfront, then lock you into a sales presentation. They catch you on the property while your family is with you, and on couples trips they play one partner against the other.</div>
+            <div class="us"><b>Honest Vacation Offers</b>No upfront charge, and we never pull you away from your vacation for a sales pitch. We give you the vacation first, then show you the benefits of our program.</div>
+          </div>
+          <div class="more">
+            <p><b>We qualify both sides</b>We vet membership programs to make sure they're honest and transparent. Then we qualify travelers so each one gets the right membership offer.</p>
+            <p><b>Timeshare owners love us</b>They know quality when they see it. They get more perks and benefits, and they keep using their timeshare.</p>
+          </div>
+        </section>
+        <section>
+          <h3>Booking is easy: <em>1, 2, 3</em></h3>
+          <ol class="steps">
+            <li>Pick your dates.</li>
+            <li>Reserve them with a refundable deposit.</li>
+            <li>We get back to you to confirm.</li>
+          </ol>
+          <div class="otd"><span class="p">From $300<small>2 travelers</small></span><span class="p">From $500<small>4 travelers</small></span><span class="fine">Taxes and fees for all 7 nights, rounded up to the nearest $100. $150 deposit, fully refundable.</span></div>
+        </section>
+        <section>
+          <h3>Side <em>by side</em></h3>
+          <div class="cmpwrap">
+            <table>
+              <thead><tr><th></th><th class="us-col">Honest Vacation Offers<br>7-Night Resort Condo Pass</th><th>Hilton Grand Vacations</th><th>Holiday Inn Club Vacations</th><th>Marriott Vacation Club</th><th>Westgate Resorts</th></tr></thead>
+              <tbody><tr><th>Nights</th><td class="us-col">7</td><td>3</td><td>3</td><td>Points offer, no stay listed</td><td>Varies</td></tr><tr><th>Paid to book</th><td class="us-col">$0 today</td><td>$249&#8211;$299 per stay</td><td>$199&#8211;$249 + tax</td><td>Not listed</td><td>From $79</td></tr><tr><th>Presentation</th><td class="us-col">45&#8211;60 min on Zoom</td><td>Not listed on offer page</td><td>2 hours at the resort</td><td>90 min, virtual</td><td>Resort preview tour on property</td></tr><tr><th>Guests</th><td class="us-col">Up to 4</td><td>Not listed</td><td>Up to 4</td><td>Not listed</td><td>Not listed</td></tr></tbody>
+            </table>
+          </div>
+          <p class="fine cmp-note">Competitor details as listed on each company's own offer page on September 29, 2026. Offers change often.</p>
+        </section>
+        <section>
+          <h3><em>Terms</em></h3>
+          <ul class="terms"><li>7 nights in a resort condominium that sleeps up to 4 travelers. Resort assigned based on availability.</li><li>70 destination options across the U.S., Canada, Caribbean and Mexico. Availability varies by location; peak seasons and major holidays may be limited.</li><li>Choose two travel dates, each 45+ days ahead and at least 30 days apart.</li><li>Government, carrier and agency fees start at $15 per night per traveler. Additional resort fees may be due at check-in.</li><li>$150 refundable Save-the-Date deposit after a valid itinerary is selected.</li><li>Both spouses or traveling partners attend one 45&#8211;60 minute presentation on Zoom. No purchase required.</li><li>Both partners must be between 35 and 72, with a combined household income of $75K+ and a major credit card.</li><li>This promotional Vacation Pass is not free: a refundable deposit and taxes/fees are paid when you book travel.</li><li>You may cancel within 30 days for a refund of amounts paid (Fla. Stat. 559.933).</li><li>Register within 6 months of issue; your Vacation Pass expires 1 year after registration.</li><li>A $350 group travel fee applies when multiple Vacation Passes travel together.</li><li>Travel fulfilled by Customer Service Network Group. FL Seller of Travel Reg. No. 17213; CA Seller of Travel No. 2025280.</li></ul>
+        </section>
+      </div>
+      <div class="p-foot">
+        <div class="qr" role="img" aria-label="QR code to honestvacationmarketing.com/poll.html"><svg viewBox="0 0 35 35"><use href="#qrp"/></svg></div>
+        <div class="scan"><b>Scan to find my vacation</b><span>honestvacationmarketing.com/poll.html</span></div>
+        <div class="call"><div class="k">Call now</div><div class="n">(855) 418-6714</div><div class="s">Speak to a live agent</div></div>
+      </div>
+    </article>
+  </div>
+</main>
+<main id="allinc" hidden>
+  <div class="wrap">
+    <div class="pass-bar">
+      <div class="kicker">Vacation Pass 2 of 4</div>
+      <div class="seg" role="group" aria-label="Pass side">
+        <button aria-pressed="true" data-side="front" data-pass="allinc">Front</button>
+        <button aria-pressed="false" data-side="back" data-pass="allinc">Back</button>
+      </div>
+    </div>
+    <article class="pass side-front" aria-label="All-Inclusive Pass, front">
+      <div class="p-mast"><span class="brand">Honest <i>Vacation</i> Offers</span><span class="issue">Vacation Pass &#183; All-Inclusive</span></div>
+      <div class="p-title">
+        <span class="fam">All-Inclusive Pass &#183; The Honest Getaway</span>
+        <h2>5 days, 4 nights <em>all-inclusive</em> for two</h2>
+        <div class="tags"><span>Exotic</span><span>Abroad</span><span>All-Inclusive</span></div>
+      </div>
+      <div class="top4 odd"><div class="field cun has-photo"><span class="rank">Top location</span><div class="nm"><small>Mexico</small><b>Cancun</b><span class="blurb">Turquoise Caribbean water and white-sand beaches.</span></div></div><div class="field dr has-photo"><span class="rank">Top location</span><div class="nm"><small>Caribbean</small><b>Dominican Republic</b><span class="blurb">Palm-lined Caribbean beaches and warm blue water.</span></div></div><div class="field mob has-photo"><span class="rank">Top location</span><div class="nm"><small>Jamaica</small><b>Montego Bay</b><span class="blurb">Jamaica's north coast, famous for its beaches.</span></div></div></div>
+      <div class="zero">
+        <div class="big">$0<small>today</small></div>
+        <div>
+          <h3>Just 45&#8211;60 minutes of your time</h3>
+          <p>We'll show you the benefits of travel and how to activate your Vacation Pass. You're never required to buy anything. If it's not for you, you're on your way in about an hour, off to enjoy an amazing vacation. We hope to earn your business again once you're back.</p>
+          <p class="line4"><b>When you book travel:</b> a $298 refundable deposit + $195&#8211;$269 per person in taxes/fees. <button class="flip-link" data-side="back" data-pass="allinc">See every term &#8594;</button></p>
+        </div>
+      </div>
+      <div class="others">
+        <div class="hd"><h3>What's included</h3><span>From the offer terms</span></div>
+        <div class="incl"><div><small>Stay</small>5 days / 4 nights at an all-inclusive resort</div><div><small>Travelers</small>Two adults</div><div><small>Check-in</small>Year-round, Sunday through Tuesday, subject to availability</div><div><small>Plan ahead</small>At least 45 days advance notice</div></div>
+      </div>
+      <div class="qual">
+        <div>
+          <h3>Limited pre-qualified offer</h3>
+          <span class="must">Must qualify</span>
+          <ul>
+            <li>You travel more than 2 times a year</li>
+            <li>Married or life partner attends with you</li>
+            <li>Combined income of $75K+ and a major credit card</li>
+            <li>Both partners between 35 and 72</li>
+          </ul>
+        </div>
+        <div class="wq">We qualify!</div>
+      </div>
+      <div class="p-foot">
+        <div class="qr" role="img" aria-label="QR code to honestvacationmarketing.com/poll.html"><svg viewBox="0 0 35 35"><use href="#qrp"/></svg></div>
+        <div class="scan"><b>Scan to find my vacation</b><span>honestvacationmarketing.com/poll.html</span></div>
+        <div class="call"><div class="k">Call now</div><div class="n">(855) 418-6714</div><div class="s">Speak to a live agent</div></div>
+      </div>
+    </article>
+    <article class="pass side-back" hidden aria-label="All-Inclusive Pass, back">
+      <div class="p-mast"><span class="brand">Honest <i>Vacation</i> Offers</span><span class="issue">Vacation Pass &#183; All-Inclusive &#183; Back</span></div>
+      <div class="back">
+        <section>
+          <h3>What to <em>expect</em></h3>
+          <div class="expect">
+            <div><span class="k">Length</span><span class="v">45 min, 60 max</span><p>One hour tops, even if you're not interested.</p></div>
+            <div><span class="k">Where</span><span class="v">On Zoom</span><p>No sales center and no time taken from your vacation.</p></div>
+            <div><span class="k">Times</span><span class="v">Mon&#8211;Sat</span><p>1:30, 3:30 or 5:30 Monday&#8211;Friday. 1:30 or 3:30 Saturday.</p></div>
+            <div><span class="k">Who attends</span><span class="v">Both of you</span><p>Both spouses, or you and your traveling partner, together.</p></div>
+            <div><span class="k">Activation</span><span class="v">About 45 min in</span><p>Your Vacation Pass is activated during the presentation.</p></div>
+            <div><span class="k">Buying</span><span class="v">Nothing, ever</span><p>You are not required to buy anything.</p></div>
+          </div>
+        </section>
+        <section>
+          <h3>Why we're <em>different</em></h3>
+          <div class="vs">
+            <div class="them"><b>The big players</b>Charge you upfront, then lock you into a sales presentation. They catch you on the property while your family is with you, and on couples trips they play one partner against the other.</div>
+            <div class="us"><b>Honest Vacation Offers</b>No upfront charge, and we never pull you away from your vacation for a sales pitch. We give you the vacation first, then show you the benefits of our program.</div>
+          </div>
+          <div class="more">
+            <p><b>We qualify both sides</b>We vet membership programs to make sure they're honest and transparent. Then we qualify travelers so each one gets the right membership offer.</p>
+            <p><b>Timeshare owners love us</b>They know quality when they see it. They get more perks and benefits, and they keep using their timeshare.</p>
+          </div>
+        </section>
+        <section>
+          <h3>Booking is easy: <em>1, 2, 3</em></h3>
+          <ol class="steps">
+            <li>Pick your dates.</li>
+            <li>Reserve them with a refundable deposit.</li>
+            <li>We get back to you to confirm.</li>
+          </ol>
+          <div class="otd"><span class="p">$400&#8211;$600<small>for two</small></span><span class="fine">Traveler-paid taxes and fees of $195&#8211;$269 per person, rounded up to the nearest $100. $298 deposit, fully refundable.</span></div>
+        </section>
+        <section>
+          <h3>Side <em>by side</em></h3>
+          <div class="cmpwrap">
+            <table>
+              <thead><tr><th></th><th class="us-col">Honest Vacation Offers<br>All-Inclusive Pass</th><th>Hilton Grand Vacations</th><th>Holiday Inn Club Vacations</th><th>Marriott Vacation Club</th><th>Westgate Resorts</th></tr></thead>
+              <tbody><tr><th>Nights</th><td class="us-col">4</td><td>3</td><td>3</td><td>Points offer, no stay listed</td><td>Varies</td></tr><tr><th>Paid to book</th><td class="us-col">$0 today</td><td>$249&#8211;$299 per stay</td><td>$199&#8211;$249 + tax</td><td>Not listed</td><td>From $79</td></tr><tr><th>Presentation</th><td class="us-col">45&#8211;60 min on Zoom</td><td>Not listed on offer page</td><td>2 hours at the resort</td><td>90 min, virtual</td><td>Resort preview tour on property</td></tr><tr><th>Guests</th><td class="us-col">2 adults</td><td>Not listed</td><td>Up to 4</td><td>Not listed</td><td>Not listed</td></tr></tbody>
+            </table>
+          </div>
+          <p class="fine cmp-note">Competitor details as listed on each company's own offer page on September 29, 2026. Offers change often.</p>
+        </section>
+        <section>
+          <h3><em>Terms</em></h3>
+          <ul class="terms"><li>5-day / 4-night all-inclusive resort vacation for two adults in Cancun, the Dominican Republic or Montego Bay. Resort assigned based on availability.</li><li>Year-round Sunday through Tuesday check-in, subject to availability.</li><li>At least 45 days advance notice required.</li><li>Traveler-paid government and resort taxes and fees: $195&#8211;$269 per person.</li><li>$298 refundable reservation deposit after a valid itinerary is selected.</li><li>Both spouses or traveling partners attend one 45&#8211;60 minute presentation on Zoom. No purchase required.</li><li>Both partners must be between 35 and 72, with a combined household income of $75K+ and a major credit card.</li><li>This promotional Vacation Pass is not free: a refundable deposit and taxes/fees are paid when you book travel.</li><li>You may cancel within 30 days for a refund of amounts paid (Fla. Stat. 559.933).</li><li>Register within 6 months of issue; your Vacation Pass expires 1 year after registration.</li><li>A $350 group travel fee applies when multiple Vacation Passes travel together.</li><li>Travel fulfilled by Customer Service Network Group. FL Seller of Travel Reg. No. 17213; CA Seller of Travel No. 2025280.</li></ul>
+        </section>
+      </div>
+      <div class="p-foot">
+        <div class="qr" role="img" aria-label="QR code to honestvacationmarketing.com/poll.html"><svg viewBox="0 0 35 35"><use href="#qrp"/></svg></div>
+        <div class="scan"><b>Scan to find my vacation</b><span>honestvacationmarketing.com/poll.html</span></div>
+        <div class="call"><div class="k">Call now</div><div class="n">(855) 418-6714</div><div class="s">Speak to a live agent</div></div>
+      </div>
+    </article>
+  </div>
+</main>
+<main id="exotic" hidden>
+  <div class="wrap">
+    <div class="pass-bar">
+      <div class="kicker">Vacation Pass 3 of 4</div>
+      <div class="seg" role="group" aria-label="Pass side">
+        <button aria-pressed="true" data-side="front" data-pass="exotic">Front</button>
+        <button aria-pressed="false" data-side="back" data-pass="exotic">Back</button>
+      </div>
+    </div>
+    <article class="pass side-front" aria-label="Exotic + Airfare Pass, front">
+      <div class="p-mast"><span class="brand">Honest <i>Vacation</i> Offers</span><span class="issue">Vacation Pass &#183; Exotic + Airfare</span></div>
+      <div class="p-title">
+        <span class="fam">Exotic + Airfare Pass &#183; The Honest Getaway</span>
+        <h2>4 nights in paradise plus <em>$500 toward airfare</em></h2>
+        <div class="tags"><span>Exotic</span><span>Abroad</span><span>+$500 Airfare</span></div>
+      </div>
+      <div class="top4 odd"><div class="field hon has-photo"><span class="rank">Top location</span><div class="nm"><small>Hawaii</small><b>Honolulu</b><span class="blurb">Waikiki Beach and Diamond Head on Oahu. Romer House Waikiki or Hotel La Croix.</span></div></div><div class="field cab has-photo"><span class="rank">Top location</span><div class="nm"><small>Mexico</small><b>Cabo San Lucas</b><span class="blurb">Where the desert meets the Pacific. Villa del Palmar or Marina Fiesta.</span></div></div><div class="field cun has-photo"><span class="rank">Top location</span><div class="nm"><small>Mexico</small><b>Cancun</b><span class="blurb">Turquoise Caribbean water and white-sand beaches.</span></div></div><div class="field cr has-photo"><span class="rank">Top location</span><div class="nm"><small>Costa Rica</small><b>Costa Rica</b><span class="blurb">Rainforest, volcanoes and Pacific beaches.</span></div></div><div class="field sj has-photo"><span class="rank">Top location</span><div class="nm"><small>Puerto Rico</small><b>San Juan</b><span class="blurb">Old San Juan's colorful streets and Isla Verde beaches.</span></div></div></div>
+      <div class="zero">
+        <div class="big">$0<small>today</small></div>
+        <div>
+          <h3>Just 45&#8211;60 minutes of your time</h3>
+          <p>We'll show you the benefits of travel and how to activate your Vacation Pass. You're never required to buy anything. If it's not for you, you're on your way in about an hour, off to enjoy an amazing vacation. We hope to earn your business again once you're back.</p>
+          <p class="line4"><b>When you book travel:</b> a $240 refundable deposit + about $150 per person in taxes/fees. <button class="flip-link" data-side="back" data-pass="exotic">See every term &#8594;</button></p>
+        </div>
+      </div>
+      <div class="others">
+        <div class="hd"><h3>Resort options</h3><span>Named in the offer terms &#183; subject to availability, not guaranteed</span></div>
+        <div class="dest"><div class="st"><i>Cabo San Lucas</i><span>Villa del Palmar &#183; Marina Fiesta</span></div><div class="st"><i>Cancun</i><span>Casa Turquesa &#183; Cancun Bay</span></div><div class="st"><i>Costa Rica</i><span>Bosque del Mar &#183; Borinquen</span></div><div class="st"><i>Honolulu</i><span>Romer House Waikiki (formerly Waikiki Pearl) &#183; Hotel La Croix</span></div><div class="st"><i>San Juan</i><span>DoubleTree San Juan &#183; Tryp Isla Verde</span></div></div>
+      </div>
+      <div class="qual">
+        <div>
+          <h3>Limited pre-qualified offer</h3>
+          <span class="must">Must qualify</span>
+          <ul>
+            <li>You travel more than 2 times a year</li>
+            <li>Married or life partner attends with you</li>
+            <li>Combined income of $75K+ and a major credit card</li>
+            <li>Both partners between 35 and 72</li>
+          </ul>
+        </div>
+        <div class="wq">We qualify!</div>
+      </div>
+      <div class="p-foot">
+        <div class="qr" role="img" aria-label="QR code to honestvacationmarketing.com/poll.html"><svg viewBox="0 0 35 35"><use href="#qrp"/></svg></div>
+        <div class="scan"><b>Scan to find my vacation</b><span>honestvacationmarketing.com/poll.html</span></div>
+        <div class="call"><div class="k">Call now</div><div class="n">(855) 418-6714</div><div class="s">Speak to a live agent</div></div>
+      </div>
+    </article>
+    <article class="pass side-back" hidden aria-label="Exotic + Airfare Pass, back">
+      <div class="p-mast"><span class="brand">Honest <i>Vacation</i> Offers</span><span class="issue">Vacation Pass &#183; Exotic + Airfare &#183; Back</span></div>
+      <div class="back">
+        <section>
+          <h3>What to <em>expect</em></h3>
+          <div class="expect">
+            <div><span class="k">Length</span><span class="v">45 min, 60 max</span><p>One hour tops, even if you're not interested.</p></div>
+            <div><span class="k">Where</span><span class="v">On Zoom</span><p>No sales center and no time taken from your vacation.</p></div>
+            <div><span class="k">Times</span><span class="v">Mon&#8211;Sat</span><p>1:30, 3:30 or 5:30 Monday&#8211;Friday. 1:30 or 3:30 Saturday.</p></div>
+            <div><span class="k">Who attends</span><span class="v">Both of you</span><p>Both spouses, or you and your traveling partner, together.</p></div>
+            <div><span class="k">Activation</span><span class="v">About 45 min in</span><p>Your Vacation Pass is activated during the presentation.</p></div>
+            <div><span class="k">Buying</span><span class="v">Nothing, ever</span><p>You are not required to buy anything.</p></div>
+          </div>
+        </section>
+        <section>
+          <h3>Why we're <em>different</em></h3>
+          <div class="vs">
+            <div class="them"><b>The big players</b>Charge you upfront, then lock you into a sales presentation. They catch you on the property while your family is with you, and on couples trips they play one partner against the other.</div>
+            <div class="us"><b>Honest Vacation Offers</b>No upfront charge, and we never pull you away from your vacation for a sales pitch. We give you the vacation first, then show you the benefits of our program.</div>
+          </div>
+          <div class="more">
+            <p><b>We qualify both sides</b>We vet membership programs to make sure they're honest and transparent. Then we qualify travelers so each one gets the right membership offer.</p>
+            <p><b>Timeshare owners love us</b>They know quality when they see it. They get more perks and benefits, and they keep using their timeshare.</p>
+          </div>
+        </section>
+        <section>
+          <h3>Booking is easy: <em>1, 2, 3</em></h3>
+          <ol class="steps">
+            <li>Pick your dates.</li>
+            <li>Reserve them with a refundable deposit.</li>
+            <li>We get back to you to confirm.</li>
+          </ol>
+          <div class="otd"><span class="p">$300<small>for two</small></span><span class="fine">About $150 per person in government, carrier and agency fees, rounded up to the nearest $100. $240 deposit, fully refundable.</span></div>
+        </section>
+        <section>
+          <h3>Side <em>by side</em></h3>
+          <div class="cmpwrap">
+            <table>
+              <thead><tr><th></th><th class="us-col">Honest Vacation Offers<br>Exotic + Airfare Pass</th><th>Hilton Grand Vacations</th><th>Holiday Inn Club Vacations</th><th>Marriott Vacation Club</th><th>Westgate Resorts</th></tr></thead>
+              <tbody><tr><th>Nights</th><td class="us-col">4</td><td>3</td><td>3</td><td>Points offer, no stay listed</td><td>Varies</td></tr><tr><th>Paid to book</th><td class="us-col">$0 today</td><td>$249&#8211;$299 per stay</td><td>$199&#8211;$249 + tax</td><td>Not listed</td><td>From $79</td></tr><tr><th>Presentation</th><td class="us-col">45&#8211;60 min on Zoom</td><td>Not listed on offer page</td><td>2 hours at the resort</td><td>90 min, virtual</td><td>Resort preview tour on property</td></tr><tr><th>Guests</th><td class="us-col">2 adults</td><td>Not listed</td><td>Up to 4</td><td>Not listed</td><td>Not listed</td></tr></tbody>
+            </table>
+          </div>
+          <p class="fine cmp-note">Competitor details as listed on each company's own offer page on September 29, 2026. Offers change often.</p>
+        </section>
+        <section>
+          <h3><em>Terms</em></h3>
+          <ul class="terms"><li>4-night resort stay for two adults in Cabo San Lucas, Cancun, Costa Rica, Honolulu or San Juan, Sunday&#8211;Tuesday check-in. Resort options are subject to availability.</li><li>$500 airfare credit applied to base airfare purchased through Customer Service Network Group (our travel fulfillment partner) with your selected destination.</li><li>Year-round Sunday through Tuesday stay, subject to property availability.</li><li>Approximately $150 per person in government, carrier and agency fees.</li><li>$240 refundable Save-the-Date deposit after a valid itinerary is selected.</li><li>Book 45+ days ahead with a preferred and an alternate date, at least 30 days apart.</li><li>Both spouses or traveling partners attend one 45&#8211;60 minute presentation on Zoom. No purchase required.</li><li>Both partners must be between 35 and 72, with a combined household income of $75K+ and a major credit card.</li><li>This promotional Vacation Pass is not free: a refundable deposit and taxes/fees are paid when you book travel.</li><li>You may cancel within 30 days for a refund of amounts paid (Fla. Stat. 559.933).</li><li>Register within 6 months of issue; your Vacation Pass expires 1 year after registration.</li><li>A $350 group travel fee applies when multiple Vacation Passes travel together.</li><li>Travel fulfilled by Customer Service Network Group. FL Seller of Travel Reg. No. 17213; CA Seller of Travel No. 2025280.</li></ul>
+        </section>
+      </div>
+      <div class="p-foot">
+        <div class="qr" role="img" aria-label="QR code to honestvacationmarketing.com/poll.html"><svg viewBox="0 0 35 35"><use href="#qrp"/></svg></div>
+        <div class="scan"><b>Scan to find my vacation</b><span>honestvacationmarketing.com/poll.html</span></div>
+        <div class="call"><div class="k">Call now</div><div class="n">(855) 418-6714</div><div class="s">Speak to a live agent</div></div>
+      </div>
+    </article>
+  </div>
+</main>
+<main id="cruise" hidden>
+  <div class="wrap">
+    <div class="pass-bar">
+      <div class="kicker">Vacation Pass 4 of 4</div>
+      <div class="seg" role="group" aria-label="Pass side">
+        <button aria-pressed="true" data-side="front" data-pass="cruise">Front</button>
+        <button aria-pressed="false" data-side="back" data-pass="cruise">Back</button>
+      </div>
+    </div>
+    <article class="pass side-front" aria-label="Cruise Pass, front">
+      <div class="p-mast"><span class="brand">Honest <i>Vacation</i> Offers</span><span class="issue">Vacation Pass &#183; Cruise</span></div>
+      <div class="p-title">
+        <span class="fam">Cruise Pass &#183; The Honest Getaway</span>
+        <h2>A 3, 4 or 5-night <em>cruise</em> for two</h2>
+        <div class="tags"><span>Exotic</span><span>Abroad</span><span>At Sea</span></div>
+      </div>
+      <div class="top4 odd"><div class="field bah has-photo"><span class="rank">Top location</span><div class="nm"><small>Cruise</small><b>Bahamas</b><span class="blurb">Crystal-clear water and island ports of call.</span></div></div><div class="field mex has-photo"><span class="rank">Top location</span><div class="nm"><small>Cruise</small><b>Mexico</b><span class="blurb">Sun-soaked Mexican ports of call.</span></div></div><div class="field wc has-photo"><span class="rank">Top location</span><div class="nm"><small>Cruise</small><b>Western Caribbean</b><span class="blurb">Island-hopping through the Western Caribbean.</span></div></div></div>
+      <div class="zero">
+        <div class="big">$0<small>today</small></div>
+        <div>
+          <h3>Just 45&#8211;60 minutes of your time</h3>
+          <p>We'll show you the benefits of travel and how to activate your Vacation Pass. You're never required to buy anything. If it's not for you, you're on your way in about an hour, off to enjoy an amazing vacation. We hope to earn your business again once you're back.</p>
+          <p class="line4"><b>When you book travel:</b> a $150 refundable deposit + about $145&#8211;$157 per person in fees. <button class="flip-link" data-side="back" data-pass="cruise">See every term &#8594;</button></p>
+        </div>
+      </div>
+      <div class="others">
+        <div class="hd"><h3>Your cruise</h3><span>8 U.S. departure ports &#183; from the offer terms</span></div>
+        <div class="incl"><div><small>Sail from</small>Ft. Lauderdale, Galveston, Jacksonville, Los Angeles, Miami, New Orleans, Port Canaveral or Tampa</div><div><small>Cabin</small>Lower-deck outside stateroom</div><div><small>Cruise lines</small>Carnival, Norwegian or Royal Caribbean. Ship and line not guaranteed</div><div><small>On board</small>Meals, snacks, entertainment and many onboard activities</div></div>
+      </div>
+      <div class="qual">
+        <div>
+          <h3>Limited pre-qualified offer</h3>
+          <span class="must">Must qualify</span>
+          <ul>
+            <li>You travel more than 2 times a year</li>
+            <li>Married or life partner attends with you</li>
+            <li>Combined income of $75K+ and a major credit card</li>
+            <li>Both partners between 35 and 72</li>
+          </ul>
+        </div>
+        <div class="wq">We qualify!</div>
+      </div>
+      <div class="p-foot">
+        <div class="qr" role="img" aria-label="QR code to honestvacationmarketing.com/poll.html"><svg viewBox="0 0 35 35"><use href="#qrp"/></svg></div>
+        <div class="scan"><b>Scan to find my vacation</b><span>honestvacationmarketing.com/poll.html</span></div>
+        <div class="call"><div class="k">Call now</div><div class="n">(855) 418-6714</div><div class="s">Speak to a live agent</div></div>
+      </div>
+    </article>
+    <article class="pass side-back" hidden aria-label="Cruise Pass, back">
+      <div class="p-mast"><span class="brand">Honest <i>Vacation</i> Offers</span><span class="issue">Vacation Pass &#183; Cruise &#183; Back</span></div>
+      <div class="back">
+        <section>
+          <h3>What to <em>expect</em></h3>
+          <div class="expect">
+            <div><span class="k">Length</span><span class="v">45 min, 60 max</span><p>One hour tops, even if you're not interested.</p></div>
+            <div><span class="k">Where</span><span class="v">On Zoom</span><p>No sales center and no time taken from your vacation.</p></div>
+            <div><span class="k">Times</span><span class="v">Mon&#8211;Sat</span><p>1:30, 3:30 or 5:30 Monday&#8211;Friday. 1:30 or 3:30 Saturday.</p></div>
+            <div><span class="k">Who attends</span><span class="v">Both of you</span><p>Both spouses, or you and your traveling partner, together.</p></div>
+            <div><span class="k">Activation</span><span class="v">About 45 min in</span><p>Your Vacation Pass is activated during the presentation.</p></div>
+            <div><span class="k">Buying</span><span class="v">Nothing, ever</span><p>You are not required to buy anything.</p></div>
+          </div>
+        </section>
+        <section>
+          <h3>Why we're <em>different</em></h3>
+          <div class="vs">
+            <div class="them"><b>The big players</b>Charge you upfront, then lock you into a sales presentation. They catch you on the property while your family is with you, and on couples trips they play one partner against the other.</div>
+            <div class="us"><b>Honest Vacation Offers</b>No upfront charge, and we never pull you away from your vacation for a sales pitch. We give you the vacation first, then show you the benefits of our program.</div>
+          </div>
+          <div class="more">
+            <p><b>We qualify both sides</b>We vet membership programs to make sure they're honest and transparent. Then we qualify travelers so each one gets the right membership offer.</p>
+            <p><b>Timeshare owners love us</b>They know quality when they see it. They get more perks and benefits, and they keep using their timeshare.</p>
+          </div>
+        </section>
+        <section>
+          <h3>Booking is easy: <em>1, 2, 3</em></h3>
+          <ol class="steps">
+            <li>Pick your dates.</li>
+            <li>Reserve them with a refundable deposit.</li>
+            <li>We get back to you to confirm.</li>
+          </ol>
+          <div class="otd"><span class="p">$300<small>3 nights</small></span><span class="p">$400<small>4 nights</small></span><span class="p">$400<small>5 nights</small></span><span class="fine">Fees of about $145, $151 or $157 per person, for two, rounded up to the nearest $100. $150 deposit, fully refundable.</span></div>
+        </section>
+        <section>
+          <h3>Side <em>by side</em></h3>
+          <div class="cmpwrap">
+            <table>
+              <thead><tr><th></th><th class="us-col">Honest Vacation Offers<br>Cruise Pass</th><th>Hilton Grand Vacations</th><th>Holiday Inn Club Vacations</th><th>Marriott Vacation Club</th><th>Westgate Resorts</th></tr></thead>
+              <tbody><tr><th>Nights</th><td class="us-col">3, 4 or 5</td><td>3</td><td>3</td><td>Points offer, no stay listed</td><td>Varies</td></tr><tr><th>Paid to book</th><td class="us-col">$0 today</td><td>$249&#8211;$299 per stay</td><td>$199&#8211;$249 + tax</td><td>Not listed</td><td>From $79</td></tr><tr><th>Presentation</th><td class="us-col">45&#8211;60 min on Zoom</td><td>Not listed on offer page</td><td>2 hours at the resort</td><td>90 min, virtual</td><td>Resort preview tour on property</td></tr><tr><th>Guests</th><td class="us-col">2 adults</td><td>Not listed</td><td>Up to 4</td><td>Not listed</td><td>Not listed</td></tr></tbody>
+            </table>
+          </div>
+          <p class="fine cmp-note">Competitor details as listed on each company's own offer page on September 29, 2026. Offers change often.</p>
+        </section>
+        <section>
+          <h3><em>Terms</em></h3>
+          <ul class="terms"><li>Choice of a 3-, 4- or 5-night cruise for two adults to the Bahamas, Mexico or the Western Caribbean.</li><li>Lower-deck outside stateroom. Participating lines include Carnival, Norwegian and Royal Caribbean; ship and line are not guaranteed.</li><li>Departs from Ft. Lauderdale, Galveston, Jacksonville, Los Angeles, Miami, New Orleans, Port Canaveral or Tampa. One adult must be 25 or older.</li><li>Meals, snacks, entertainment and many onboard activities included.</li><li>Book 45+ days ahead. Peak June&#8211;August sailings and major holidays are excluded.</li><li>Fees of approximately $145 / $151 / $157 per person for 3 / 4 / 5 nights.</li><li>$150 refundable deposit.</li><li>Both spouses or traveling partners attend one 45&#8211;60 minute presentation on Zoom. No purchase required.</li><li>Both partners must be between 35 and 72, with a combined household income of $75K+ and a major credit card.</li><li>This promotional Vacation Pass is not free: a refundable deposit and taxes/fees are paid when you book travel.</li><li>You may cancel within 30 days for a refund of amounts paid (Fla. Stat. 559.933).</li><li>Register within 6 months of issue; your Vacation Pass expires 1 year after registration.</li><li>A $350 group travel fee applies when multiple Vacation Passes travel together.</li><li>Travel fulfilled by Customer Service Network Group. FL Seller of Travel Reg. No. 17213; CA Seller of Travel No. 2025280.</li></ul>
+        </section>
+      </div>
+      <div class="p-foot">
+        <div class="qr" role="img" aria-label="QR code to honestvacationmarketing.com/poll.html"><svg viewBox="0 0 35 35"><use href="#qrp"/></svg></div>
+        <div class="scan"><b>Scan to find my vacation</b><span>honestvacationmarketing.com/poll.html</span></div>
+        <div class="call"><div class="k">Call now</div><div class="n">(855) 418-6714</div><div class="s">Speak to a live agent</div></div>
+      </div>
+    </article>
+  </div>
+</main>
+<div class="wrap credits"><details><summary>Photo credits</summary><ul><li>Lake Eola Lake, Orlando Florida.jpg by DoctorDotDJ, CC BY-SA 4.0, <a href="https://commons.wikimedia.org/wiki/File:Lake_Eola_Lake,_Orlando_Florida.jpg">Wikimedia Commons</a></li><li>Myrtle Beach ferris wheel.jpg by The ed17, CC BY-SA 4.0, <a href="https://commons.wikimedia.org/wiki/File:Myrtle_Beach_ferris_wheel.jpg">Wikimedia Commons</a></li><li>Fall at Oconaluftee Overlook.JPG by Scott Basford, CC BY-SA 3.0, <a href="https://commons.wikimedia.org/wiki/File:Fall_at_Oconaluftee_Overlook.JPG">Wikimedia Commons</a></li><li>Boulevard Kukulcan, Zona Hotelera, Canc&#250;n, Mexico - panoramio (23).jpg by MARELBU, CC BY 3.0, <a href="https://commons.wikimedia.org/wiki/File:Boulevard_Kukulcan,_Zona_Hotelera,_Canc%C3%BAn,_Mexico_-_panoramio_(23).jpg">Wikimedia Commons</a></li><li>Punta Cana Beach 02.jpg by NoonIcarus, CC BY-SA 3.0, <a href="https://commons.wikimedia.org/wiki/File:Punta_Cana_Beach_02.jpg">Wikimedia Commons</a></li><li>Montego Bay East Photo Don Ramey Logan.jpg by Don Ramey Logan, CC BY-SA 3.0, <a href="https://commons.wikimedia.org/wiki/File:Montego_Bay_East_Photo_Don_Ramey_Logan.jpg">Wikimedia Commons</a></li><li>Waikiki Beach (2024)-L1004709.jpg by Frank Schulenburg, CC BY-SA 4.0, <a href="https://commons.wikimedia.org/wiki/File:Waikiki_Beach_(2024)-L1004709.jpg">Wikimedia Commons</a></li><li>El Arco, Cabo San Lucas, M&#233;xico, 2024-12-22, DD 03.jpg by Diego Delso, CC BY-SA 4.0, <a href="https://commons.wikimedia.org/wiki/File:El_Arco,_Cabo_San_Lucas,_M%C3%A9xico,_2024-12-22,_DD_03.jpg">Wikimedia Commons</a></li><li>Manuel-antonio-quepos-costa-rica-second-beach.JPG by w:User:Tarrazu, Public domain, <a href="https://commons.wikimedia.org/wiki/File:Manuel-antonio-quepos-costa-rica-second-beach.JPG">Wikimedia Commons</a></li><li>Puerto Rico &#8212; San Juan &#8212; unknown turquoise residential building with flag.JPG by User:Mattes, CC BY 2.0 de, <a href="https://commons.wikimedia.org/wiki/File:Puerto_Rico_%E2%80%94_San_Juan_%E2%80%94_unknown_turquoise_residential_building_with_flag.JPG">Wikimedia Commons</a></li><li>Bahamas 1989 (542) Exuma (25258969665).jpg by R&#252;diger Stehn from Kiel, Deutschland, CC BY-SA 2.0, <a href="https://commons.wikimedia.org/wiki/File:Bahamas_1989_(542)_Exuma_(25258969665).jpg">Wikimedia Commons</a></li><li>Beach Chairs In Cozumel Mexico (125160641).jpeg by Dronepicr, CC BY 3.0, <a href="https://commons.wikimedia.org/wiki/File:Beach_Chairs_In_Cozumel_Mexico_(125160641).jpeg">Wikimedia Commons</a></li><li>Seven Mile Beach Facing South.jpg by Coolcaesar, CC BY 4.0, <a href="https://commons.wikimedia.org/wiki/File:Seven_Mile_Beach_Facing_South.jpg">Wikimedia Commons</a></li></ul><p>Photos show the destinations, not specific resorts. Resorts are assigned based on availability.</p></details></div>
+<script>
+(function(){
+  var ids=['condo','allinc','exotic','cruise'];
+  var tabs=document.querySelectorAll('.tab[data-go]');
+  function go(p){
+    if(ids.indexOf(p)<0)p='condo';
+    ids.forEach(function(k){var el=document.getElementById(k);if(el)el.hidden=(k!==p)});
+    tabs.forEach(function(t){t.setAttribute('aria-selected',String(t.dataset.go===p))});
+    try{history.replaceState(null,'','#'+p)}catch(e){}
+    window.scrollTo(0,0);
+  }
+  document.addEventListener('click',function(e){
+    var g=e.target.closest('[data-go]'); if(g){go(g.dataset.go);return}
+    var s=e.target.closest('[data-side]'); if(!s)return;
+    var root=document.getElementById(s.dataset.pass), side=s.dataset.side;
+    root.querySelector('.side-front').hidden=side!=='front';
+    root.querySelector('.side-back').hidden=side!=='back';
+    root.querySelectorAll('[data-side]').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.side===side))});
+  });
+  var h=(location.hash||'').replace('#','');
+  if(h)go(h);
+})();
+</script>
+
+</body></html>
